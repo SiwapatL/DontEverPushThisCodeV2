@@ -43,8 +43,8 @@ jobs:
                 path: ./
                 # TODO#2: set base + HEAD refs so TruffleHog scans the commit diff
                 # TODO#3: add extra_args flag to report ONLY VERIFIED secrets (reduce noise)
-                base: ${{ github.event.repository.default_branch }}
-                head: HEAD # scan up to the commit that triggered this run
+                base: ""
+                head: ${{ github.ref_name }} # scan up to the commit that triggered this run
                 extra_args: --only-verified # report only secrets confirmed to be live
 
             # Gitleaks scans code + history for regex patterns that look like secrets. It can be more accurate than TruffleHog, but may miss live creds that don't match known patterns.
